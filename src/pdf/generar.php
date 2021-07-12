@@ -14,7 +14,7 @@ $clientes = mysqli_query($conexion, "SELECT * FROM cliente WHERE idcliente = $id
 $datosC = mysqli_fetch_assoc($clientes);
 $ventas = mysqli_query($conexion, "SELECT d.*, p.codproducto, p.descripcion FROM detalle_venta d INNER JOIN producto p ON d.id_producto = p.codproducto WHERE d.id_venta = $id");
 $pdf->Cell(195, 5, utf8_decode($datos['nombre']), 0, 1, 'C');
-$pdf->image("../../assets/img/logo.png", 180, 10, 30, 30, 'PNG');
+$pdf->Image("../../assets/img/logo.png", 180, 10, 30, 30, 'PNG');
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(20, 5, utf8_decode("Teléfono: "), 0, 0, 'L');
 $pdf->SetFont('Arial', '', 10);
