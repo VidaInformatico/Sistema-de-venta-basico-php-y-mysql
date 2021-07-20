@@ -8,17 +8,17 @@ if (empty($existe) && $id_user != 1) {
     header("Location: permisos.php");
 }
     if (!empty($_POST)) {
+		      $codigo = $_POST['codigo'];
+        $producto = $_POST['producto'];
+        $precio = $_POST['precio'];
+        $cantidad = $_POST['cantidad'];
+        $usuario_id = $_SESSION['idUser'];
         $alert = "";
-        if (empty($_POST['codigo']) || empty($_POST['producto']) || empty($_POST['precio']) || $_POST['precio'] <  0 || empty($_POST['cantidad'] || $_POST['cantidad'] <  0)) {
+        if (empty($codigo) || empty($producto) || empty($precio) || $precio <  0 || empty($cantidad) || $cantidad < 0) {
             $alert = '<div class="alert alert-danger" role="alert">
                 Todo los campos son obligatorios
               </div>';
         } else {
-            $codigo = $_POST['codigo'];
-            $producto = $_POST['producto'];
-            $precio = $_POST['precio'];
-            $cantidad = $_POST['cantidad'];
-            $usuario_id = $_SESSION['idUser'];
             $query = mysqli_query($conexion, "SELECT * FROM producto WHERE codigo = '$codigo'");
             $result = mysqli_fetch_array($query);
             if ($result > 0) {
@@ -26,7 +26,7 @@ if (empty($existe) && $id_user != 1) {
                         El código ya existe
                     </div>';
             } else {
-                $query_insert = mysqli_query($conexion, "INSERT INTO producto(codigo,descripcion,precio,existencia,usuario_id) values ('$codigo', '$producto', '$precio', '$cantidad','$usuario_id')");
+				$query_insert = mysqli_query($conexion,"INSERT INTO producto(codigo,descripcion,precio,existencia,usuario_id) values ('$codigo', '$producto','$precio','$cantidad','$usuario_id')");
                 if ($query_insert) {
                     $alert = '<div class="alert alert-success" role="alert">
                 Producto Registrado
