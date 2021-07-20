@@ -8,7 +8,7 @@ if (empty($existe) && $id_user != 1) {
     header("Location: permisos.php");
 }
     if (!empty($_POST)) {
-		      $codigo = $_POST['codigo'];
+		$codigo = $_POST['codigo'];
         $producto = $_POST['producto'];
         $precio = $_POST['precio'];
         $cantidad = $_POST['cantidad'];
